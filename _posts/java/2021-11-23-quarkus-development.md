@@ -42,6 +42,11 @@ gu install native-image
 $JAVA_HOME/bin/native-image --version
 ```
 
+### install maven
+
+```bash
+sdk install maven 3.8.4
+```
 ### passwordless SSH github setup
 
 ```bash

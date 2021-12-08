@@ -61,3 +61,10 @@ configure git client for initial use:
 git config --global user.name "swapan-datahawklab"
 git config --global user.email swapan.chakrabarty@datahawklab.com
 ```
+
+
+```java
+InheritanceType.SINGLE_TABLE
+InheritanceType.JOINED
+
+```

@@ -25,3 +25,24 @@ This took me less than 30 minutes to setup and its extremely fast and easy to wo
 ### instructions for setting up Java and Maven via SDKMAN on Ubuntu 
 
 [sdkman-java-ubuntu2004-install](https://datahawklab.com/java%20development/2021/11/23/sdkman-java-ubuntu2004-install/)
+
+### use vscode to connect to WSL Ubuntu, create a folder under your homedir
+
+* generate skeleton quarkus app with working rest endpoint and all required maven dependencies
+  
+  ```bash
+mvn io.quarkus.platform:quarkus-maven-plugin:2.6.1.Final:create \
+        -DprojectGroupId=org.jdbc.test \
+        -DprojectArtifactId=rest-book \
+        -DclassName="org.jdbc.test.book.BookResource" \
+        -Dpath="/api/books" \
+        -Dextensions="resteasy-jsonb,smallrye-openapi,jdbc-mysql,quarkus-agroal"
+```
+
+### validate that app works by follwing the instructions in the output of the command above
+
+```bash
+[INFO] Your new application has been created in /home/swapanc/github/quarkus-persistence/test/rest-book
+[INFO] Navigate into this directory and launch your application with mvn quarkus:dev
+[INFO] Your application will be accessible on http://localhost:8080
+```

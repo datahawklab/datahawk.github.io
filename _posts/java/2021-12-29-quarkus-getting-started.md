@@ -20,7 +20,7 @@ This took me less than 30 minutes to setup and its extremely fast and easy to wo
 
 ### instructions for setting up Wsl2 on Windows 11
 
-[windows11-wsl2-linux-java-dev-setup]([2021-12-28-windows11-wsl2-linux-java-dev-setup.md](https://datahawklab.com/java%20development/2021/12/28/windows11-wsl2-linux-java-dev-setup/))
+[windows11-wsl2-linux-java-dev-setup](https://datahawklab.com/java%20development/2021/12/28/windows11-wsl2-linux-java-dev-setup/)
 
 ### instructions for setting up Java and Maven via SDKMAN on Ubuntu 
 

@@ -30,7 +30,7 @@ This took me less than 30 minutes to setup and its extremely fast and easy to wo
 
 * generate skeleton quarkus app with working rest endpoint and all required maven dependencies
   
-  ```bash
+```bash
 mvn io.quarkus.platform:quarkus-maven-plugin:2.6.1.Final:create \
         -DprojectGroupId=org.jdbc.test \
         -DprojectArtifactId=rest-book \
@@ -39,10 +39,19 @@ mvn io.quarkus.platform:quarkus-maven-plugin:2.6.1.Final:create \
         -Dextensions="resteasy-jsonb,smallrye-openapi,jdbc-mysql,quarkus-agroal"
 ```
 
-### validate that app works by follwing the instructions in the output of the command above
+### start the app
+
+```bash
+cd rest-book ;\
+mvn quarkus:dev
+```   
+
+### validate that app works
 
 ```bash
 [INFO] Your new application has been created in /home/swapanc/github/quarkus-persistence/test/rest-book
 [INFO] Navigate into this directory and launch your application with mvn quarkus:dev
 [INFO] Your application will be accessible on http://localhost:8080
 ```
+
+[http://localhost:8080](http://localhost:8080)

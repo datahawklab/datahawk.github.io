@@ -16,6 +16,7 @@ summary: java vscode remote dev setup windows 11 wsl2 docker destkop
 wsl --install
 wsl --install Ubuntu-20.04
 ```
+
 ### install vscode and remote development extension
 
 ![install remote development vscode](https://user-images.githubusercontent.com/91769455/147636444-157b2f00-4259-4de8-a8fa-77b4116580cb.png)
@@ -38,9 +39,6 @@ click on 'new wsl window'
 
 ![open bash terminal](https://user-images.githubusercontent.com/91769455/147637417-981d7b13-0f32-4c11-be50-1e46ca6c41d6.png)
 
-
-### Verify that docker is accessible via WSL ubuntu terminal in vscode. 
+### Verify that docker is accessible via WSL ubuntu terminal in vscode
 
 ![vscode terminal](https://user-images.githubusercontent.com/91769455/147637616-5caf6d60-aa9f-4117-a160-b771093d7d15.png)
-
-

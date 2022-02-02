@@ -16,8 +16,6 @@ tags:
 
 # Example vagrantfile for multi host build
 
-
-
 ```bash
 cat Vagrantfile
 # -*- mode: ruby -*-

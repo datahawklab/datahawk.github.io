@@ -9,7 +9,7 @@ tags: [ node.js, java, ruby, jekyll, mvm, sdkman ]
 summary: setup ubuntu 20.04 curl, node.js, java, ruby, jekyll, mvm, sdkman
 ---
 
-### install Node Npm Java Maven Ruby Jekyll   
+### install Node Npm Java Maven Ruby Jekyll
 
 ```bash
 sudo apt update -y && \
@@ -35,6 +35,7 @@ gem install jekyll bundler && \
 ssh-keygen -t rsa -b 4096 -C "servid.servid@datahawklab.com" -f $HOME/.ssh/id_rsa_datahawklab
 ssh-keygen -t rsa -b 4096 -C "servid.servid@gmail.com" -f $HOME/.ssh/id_rsa_servidc
 ```
+
 ### in file ~/.ssh/config  
 
 ```bash
@@ -65,8 +66,7 @@ bundle install && \
 bundle exec jekyll serve
 ```
 
-
-### install Node Npm Java Maven Ruby Jekyll   
+### install Node Npm Java Maven Ruby Jekyll
 
 ```bash
 sudo apt update -y && \
@@ -86,10 +86,7 @@ source ~/.bashrc && \
 gem install jekyll bundler && \
 ```
 
-
-
 ### configure Git client
-
 
 ```bash
 git config --global user.email "servid.servid@gmail.com" ;\
@@ -218,7 +215,6 @@ restart sshd
 sudo systemctl restart ssh
 ```
 
-
 ### setup auto-update and auto-upgrade on Ubuntu Server 20.04
 
 * install:
@@ -250,6 +246,7 @@ sudo unattended-upgrades --dry-run --debug
 ```
 
 ### install barrier from source Ubuntu
+
 **Keyboard and mouse sharing between Linux hosts Barrier**
 
 ```bash
@@ -467,4 +464,3 @@ ebtables \
 dnsmasq-base
 sudo apt autoremove
 ```
-

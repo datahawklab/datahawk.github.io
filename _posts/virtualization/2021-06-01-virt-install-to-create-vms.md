@@ -1,6 +1,6 @@
 # virt-install to create VM's
 
-## 
+##
 
 ```bash
 # create a storage pool
@@ -38,6 +38,3 @@ root@dlp:~# virsh console ubuntu2004
 
     irt-clone --original ubuntu2004 --name ubuntu2004_org --file /var/kvm/images/ubuntu2004_org.img
 ```
-
-## 
-

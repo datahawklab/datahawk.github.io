@@ -13,16 +13,15 @@ You need just the following to get start with quarkus
 * JDK 11+
 * Maven or Gradle
   
+My developer setup is Windows 11 laptop with WSL2 (Windows Subsystem for Linux). Im running Ubuntu 20.04 on wsl2.  I use Vscode with the remote development pack. There i install Java and Maven via SDK man. Next install Docker Desktop on windows 11. Then i connect to Ubuntu on WSL and develop on the WSL Linux host.
 
-My developer setup is Windows 11 laptop with WSL2 (Windows Subsystem for Linux). Im running Ubuntu 20.04 on wsl2.  I use Vscode with the remote development pack. There i install Java and Maven via SDK man. Next install Docker Desktop on windows 11. Then i connect to Ubuntu on WSL and develop on the WSL Linux host. 
-
-This took me less than 30 minutes to setup and its extremely fast and easy to work with.  It seems to run at near native speeds. 
+This took me less than 30 minutes to setup and its extremely fast and easy to work with.  It seems to run at near native speeds.
 
 ### instructions for setting up Wsl2 on Windows 11
 
 [windows11-wsl2-linux-java-dev-setup](https://datahawklab.com/java%20development/2021/12/28/windows11-wsl2-linux-java-dev-setup/)
 
-### instructions for setting up Java and Maven via SDKMAN on Ubuntu 
+### instructions for setting up Java and Maven via SDKMAN on Ubuntu
 
 [sdkman-java-ubuntu2004-install](https://datahawklab.com/java%20development/2021/11/23/sdkman-java-ubuntu2004-install/)
 
@@ -44,7 +43,7 @@ mvn io.quarkus.platform:quarkus-maven-plugin:2.6.1.Final:create \
 ```bash
 cd rest-book ;\
 mvn quarkus:dev
-```   
+```
 
 ### validate that app works
 

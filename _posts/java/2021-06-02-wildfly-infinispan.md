@@ -56,7 +56,6 @@ yes/no? yes
 To represent the user add the following to the `server-identities` definition `<secret value="cGFzc3dvcmRPbmU=" />`
 ```
 
-
 ## Slave/domain/configuration/host.xml
 
 ```bash
@@ -77,15 +76,6 @@ To represent the user add the following to the `server-identities` definition `<
 </management>
 ```
 
-
-
-
-
-
-
-
-
-
 ## master remove from domain.xml
 
 ```xml
@@ -105,7 +95,6 @@ To represent the user add the following to the `server-identities` definition `<
 </server-groups>
 
 ```
-
 
 ## remove from host-slave.xml
 
@@ -144,7 +133,6 @@ with
 export JBOSS_HOME="${HOME}/Downloads/jboss-eap/EXP-1/jboss-eap-7.3" ;\
 export PASS="passwordOne" ; $JBOSS_HOME/bin/add-user.sh -u admin1 -p $PASS && echo $PASS | base64
 ```
-
 
 ```bash
 #!/bin/bash
@@ -263,6 +251,7 @@ $JBOSS_HOME/bin/domain.sh ;\
 ## for the domain controller
 
 [http://www.mastertheboss.com/jboss-server/jboss-as-7/jboss-as-7-domain-configuration](http://www.mastertheboss.com/jboss-server/jboss-as-7/jboss-as-7-domain-configuration)
+
 * verify in $JBOSS_HOME/configuration/domain.xml
 
 ```xml
@@ -281,6 +270,7 @@ $JBOSS_HOME/bin/domain.sh ;\
         </server-group>
     </server-groups>
 ```
+
 * update in JBOSS_HOME/domain/configuration/host.xml
 
 ```xml
@@ -314,7 +304,7 @@ in since we won't add any server on this host, we need to state it, using an emp
 </server-identities>
 ```
 
-### So we will configure on the first host (server1):
+### So we will configure on the first host (server1)
 
 ```xml
     <servers>
@@ -324,7 +314,6 @@ in since we won't add any server on this host, we need to state it, using an emp
         </server>
     </servers>
 ```
-
 
 * And on the second host (server2)
 
@@ -346,7 +335,7 @@ For the second server a port-offset of 150 is configured to avoid port conflicts
 $JBOSS_HOME/bin/add-user.sh -u admin1234 -p Password1!
 ```
 
-### run the domain controller like below 
+### run the domain controller like below
 
 ```bash
 export JBOSS_HOME="/home/servidc/usr/local/bin/jboss-eap-7.3" ;\
@@ -380,6 +369,7 @@ nohup $JBOSS_HOME/bin/domain.sh ;\
 ```bash
 http://~~192.168.1.77~~:9990 
 ```
+
 ```bash
 
 ```bash
@@ -485,6 +475,7 @@ http://$JDG_DOMAIN_MASTER_HOST_IP:9990
 Manage Weblogic cluster
 http://$DOMAIN_MASTER_HOST:9990
 ```
+
 ```java
 
 package org.infinispan;
@@ -730,8 +721,6 @@ export JBOSS_HOME="/home/servidc/usr/local/bin/jboss-jdg/jboss-eap-7.3" && \
 ./bin/domain.sh -Djboss.bind.address=192.168.1.77 -Djboss.bind.address.management=192.168.1.77
 ```
 
-
-
 5. Go to the slave node (with app server) and change default host settings
 
 export JBOSS_HOME="/home/servidc/usr/local/bin/jboss-jdg/jboss-eap-7.3" && \
@@ -764,7 +753,4 @@ cp ./domain/configuration/host-slave.xml ./domain/configuration/host.xml
    $JBOSS_HOME/bin/domain.sh -Djboss.domain.master.address=192.168.1.77 -Djboss.bind.address.management=192.168.1.156 -Djboss.bind.address=0.0.0.0
 ......
 
-
-
 ### install steps
-

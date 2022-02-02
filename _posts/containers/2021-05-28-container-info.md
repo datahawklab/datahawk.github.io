@@ -15,8 +15,6 @@ tags:
 
 # Container info
 
-
-
 ## container info
 
 ### systemd on wsl windows 10 pro
@@ -195,6 +193,7 @@ done
 dos2unix output.txt
 cat output.txt | paste -d, - - -;
 ```
+
 # container info
 
 ## systemd on wsl windows 10 pro
@@ -369,7 +368,7 @@ apt update
 apt upgrade
 ```
 
-### libVirt install:
+### libVirt install
 
 ```text
 # libVirt install
@@ -386,7 +385,7 @@ sudo usermod -aG kvm $USER
 sudo brctl show
 ```
 
-### Cockpit:
+### Cockpit
 
 ```text
 sudo su - 
@@ -398,7 +397,7 @@ apt install cockpit-machines cockpit-storaged cockpit-packagekit cockpit-network
 # Cockpit should now be available on https://ip:9090
 ```
 
-### Docker:
+### Docker
 
 ```text
 sudo apt-get update && \
@@ -438,7 +437,7 @@ http://SERVER_IP:9000/
 http://SERVER_IP:19999
 ```
 
-### This was needed in CentOS 8, not sure about Ubuntu 20.04 yet:
+### This was needed in CentOS 8, not sure about Ubuntu 20.04 yet
 
 ```text
 Set up network bridge:
@@ -447,7 +446,6 @@ Select your ethernet card (em1) *(ymmv)
 Name - bridge0
 Reboot. Really. This may save some headaches later.
 ```
-
 
 ## multi stage
 
@@ -710,6 +708,7 @@ echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/userns.conf
 ```
 
 **enable cgroups v2**
+
 * add "systemd.unified_cgroup_hierarchy=1" to /etc/default/grub
 
 ```bash
@@ -819,7 +818,8 @@ ps -ef | grep "sleep 2000" | grep -v grep
 ```
 
 **root outside and non-root inside the container**
-*  note that podman maps UID inside the UID outside
+
+* note that podman maps UID inside the UID outside
 
 ```bash
 whoami
@@ -844,6 +844,7 @@ exit
 ps -ef | grep "sleep 4000" | grep -v grep
 id
 ```
+
 ### non-root user systemd
 
 Note: As we know podman is daemonless, so this container is stopped on next boot.
@@ -852,19 +853,20 @@ To make it persistent
 **Enable linger to allow non-root users to make use of systemd**
 
 ```bash
-$ sudo loginctl enable-linger {USER}
-$ sudo loginctl user-status {USER}
+sudo loginctl enable-linger {USER}
+sudo loginctl user-status {USER}
 ```
+
 **Create user systemd service for a container as a non-root user**
 
 ```bash
-$ cd .config
-$ mkdir -p systemd/user
-$ cd systemd/user
-$ podman generate systemd --name linkding --files
-$ systemctl --user daemon-reload
-$ systemctl --user enable --now container-linkding.service
-$ systemctl --user status container-linkding.service
+cd .config
+mkdir -p systemd/user
+cd systemd/user
+podman generate systemd --name linkding --files
+systemctl --user daemon-reload
+systemctl --user enable --now container-linkding.service
+systemctl --user status container-linkding.service
 ```
 
 ### how to deal with volume mounts with rootless containers

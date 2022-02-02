@@ -16,13 +16,13 @@ source "/home/swapanc/.sdkman/bin/sdkman-init.sh"
 
 ## figure out which JDK version and Graalvm version need to be installed
 
-Use sdkman to install Graalvm and Openjdk on WSL Ubuntu via Vscode. 
+Use sdkman to install Graalvm and Openjdk on WSL Ubuntu via Vscode.
 
 ```bash
 sdk list java
 ```
 
-The versions below are mapped together. So the 11.0.11  jdk is mapped to 12.2.0 Graalvm version 
+The versions below are mapped together. So the 11.0.11  jdk is mapped to 12.2.0 Graalvm version
 
 ![open jdk to graal vm mapping](https://user-images.githubusercontent.com/91769455/147639404-325daf89-264b-4db5-b421-2bd9897cb4ba.png)
 
@@ -36,6 +36,7 @@ The versions below are mapped together. So the 11.0.11  jdk is mapped to 12.2.0 
 sdk list java | grep adpt
 sdk install java 11.0.11.hs-adpt
 ```
+
 ## install graalvm via SDKman
 
 ```bash
@@ -56,11 +57,12 @@ export GRAALVM_HOME=/home/swapanc/.sdkman/candidates/java/21.2.0.r11-grl
 gu install native-image
 $GRAALVM_HOME/bin/native-image --version
 ```
+
 #### add GraalVM_HOME to .bashrc
 
 ```bash
 export GRAALVM_HOME=/home/swapanc/.sdkman/candidates/java/21.2.0.r11-grl
-``` 
+```
 
 ## install maven via SDKman
 
@@ -68,6 +70,7 @@ export GRAALVM_HOME=/home/swapanc/.sdkman/candidates/java/21.2.0.r11-grl
 sdk list maven
 sdk install maven 3.8.4
 ```
+
 ## passwordless SSH github setup
 
 ```bash
@@ -76,7 +79,7 @@ ssh-keygen -t ed25519 -C "swapan.chakrabarty@datahawklab.com"
 
 * copy public key to github
 
-### configure git client for git for initial use on WSL Ubuntu:
+### configure git client for git for initial use on WSL Ubuntu
 
 ```bash
 git config --global user.name "githubusername"

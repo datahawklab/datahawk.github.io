@@ -44,15 +44,11 @@ gem install jekyll bundler
 su - servid -c "mkdir -p usr/local/bin"
 ```
 
-
-
-
 vim ~/.sdkman/etc/config
 
-#set the following
+# set the following
 sdkman_auto_answer=true
 sdkman_auto_selfupdate=true
-
 
 sdk use java 11.0.11.j9-adpt
 sdk default java 11.0.11.j9-adpt
@@ -209,11 +205,10 @@ vim maven.sh
 
 ## MAVEN_HOME for Maven 1 - M2_HOME for Maven 2
 
-
-
 ## Install binaries for Oracle JDK and Weblogic dev installer (ONE TIME)
 
 ## Get the latest Oracle JDK and the 12.2.1.4 generic weblogic installer. Install under a non root id
+
 [https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html](https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html)
 
@@ -230,49 +225,66 @@ FROM registry.access.redhat.com/rhel7.1
 
 MAINTAINER Gidi Kern <gidikern@gmail.com>
 
-RUN curl -b oraclelicense=accept-securebackup-cookie -O -L http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jre-8u60-linux-x64.rpm && rpm -ivh jre-8u60-linux-x64.rpm && rm -rf jre-8u60-linux-x64.rpm
+RUN curl -b oraclelicense=accept-securebackup-cookie -O -L <http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jre-8u60-linux-x64.rpm> && rpm -ivh jre-8u60-linux-x64.rpm && rm -rf jre-8u60-linux-x64.rpm
 
 ENV JAVA_HOME /usr/java/jre1.8.0_60
 
 # The official Red Hat registry and the base image
+
 FROM registry.access.redhat.com/rhel7-minimal
 USER root
+
 # Install Java runtime
+
 RUN microdnf --enablerepo=rhel-7-server-rpms \
 install java-1.8.0-openjdk --nodocs ;\
 microdnf clean all
+
 # Set the JAVA_HOME variable to make it clear where Java is located
+
 ENV JAVA_HOME /etc/alternatives/jre
+
 # Dir for my app
+
 RUN mkdir -p /app
+
 # Expose port to listen to
+
 EXPOSE 8080
+
 # Copy the MicroProfile starter app
+
 COPY demo-thorntail.jar /app/
-# Copy the script from the source; run-java.sh has specific parameters to run a Thorntail app from the command line in a container. More on the script can be found at https://github.com/sshaaf/rhel7-jre-image/blob/master/run-java.sh
+
+# Copy the script from the source; run-java.sh has specific parameters to run a Thorntail app from the command line in a container. More on the script can be found at <https://github.com/sshaaf/rhel7-jre-image/blob/master/run-java.sh>
+
 COPY run-java.sh /app/
+
 # Setting up permissions for the script to run
+
 RUN chmod 755 /app/run-java.sh
+
 # Finally, run the script
+
 CMD [ "/app/run-java.sh" ]
 
-FROM	centos
+FROM centos
 
-ENV	UPDATE_VERSION=8u73
-ENV	JAVA_VERSION=1.8.0_73
-ENV	BUILD=b02
+ENV UPDATE_VERSION=8u73
+ENV JAVA_VERSION=1.8.0_73
+ENV BUILD=b02
 
 ```bash
-RUN	yum -y update && \
-	yum -y install wget && \
-	wget -c --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${UPDATE_VERSION}-${BUILD}/jdk-${UPDATE_VERSION}-linux-x64.rpm" --output-document="jdk-${UPDATE_VERSION}-linux-x64.rpm" && \
-	rpm -i jdk-${UPDATE_VERSION}-linux-x64.rpm && \
-	alternatives --install /usr/bin/java java /usr/java/jdk${JAVA_VERSION}/bin/java 1 && \
-	alternatives --set java /usr/java/jdk${JAVA_VERSION}/bin/java && \
-	export JAVA_HOME=/usr/java/jdk${JAVA_VERSION}/ && \
-	echo "export JAVA_HOME=/usr/java/jdk${JAVA_VERSION}/" | tee /etc/environment && \
-	source /etc/environment && \
-	rm jdk-${UPDATE_VERSION}-linux-x64.rpm
+RUN yum -y update && \
+ yum -y install wget && \
+ wget -c --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${UPDATE_VERSION}-${BUILD}/jdk-${UPDATE_VERSION}-linux-x64.rpm" --output-document="jdk-${UPDATE_VERSION}-linux-x64.rpm" && \
+ rpm -i jdk-${UPDATE_VERSION}-linux-x64.rpm && \
+ alternatives --install /usr/bin/java java /usr/java/jdk${JAVA_VERSION}/bin/java 1 && \
+ alternatives --set java /usr/java/jdk${JAVA_VERSION}/bin/java && \
+ export JAVA_HOME=/usr/java/jdk${JAVA_VERSION}/ && \
+ echo "export JAVA_HOME=/usr/java/jdk${JAVA_VERSION}/" | tee /etc/environment && \
+ source /etc/environment && \
+ rm jdk-${UPDATE_VERSION}-linux-x64.rpm
 
 
 cd /usr/local
@@ -281,7 +293,7 @@ wget --no-cookies --no-check-certificate \
 http://download.oracle.com/otn/java/jdk/8u281-b09/89d678f2be164786b292527658ca1605/jdk-8u281-linux-x64.tar.gz
 
 
-ENV	JAVA_HOME=/usr/java/jdk${JAVA_VERSION}
+ENV JAVA_HOME=/usr/java/jdk${JAVA_VERSION}
 
 export JAVA_VERSION_MAJOR="8"
 export JAVA_VERSION_MINOR="60"
@@ -311,7 +323,6 @@ wget -c -O "jdk-8u141-linux-x64.tar.gz" \
 
 curl -L --header "Cookie: s_nr=1359635827494; s_cc=true; gpw_e24=http%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk6downloads-1902814.html; s_sq=%5B%5BB%5D%5D; gpv_p24=no%20value" http://download.oracle.com/otn-pub/java/jdk/8u281-b09/jdk-8u281-linux-x64.bin -o jdk-8u281-linux-x64.bin
 ```
-
 
 ```bash
 export M2_HOME=/usr/local/maven

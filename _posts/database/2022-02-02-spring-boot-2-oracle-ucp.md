@@ -15,7 +15,7 @@ summary: Springboot 2 oracle Universal Connection Pool configuration(UCP)
 
 ## Directory Structure
 
-SpringBootSample
+```
 ├── Readme.md
 ├── pom.xml
 └── src
@@ -40,7 +40,7 @@ SpringBootSample
         │                       └── EmployeeServiceImpl.java
         └── resources
             └── application.properties
-
+```
 
 ## pom.xml
 

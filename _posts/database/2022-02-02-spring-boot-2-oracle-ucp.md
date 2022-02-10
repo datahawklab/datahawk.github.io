@@ -46,22 +46,22 @@ SpringBootSample
 ```
 
 ```bash
-mkdir springboot-ucp 
-cd springboot-ucp 
-mkdir -p src/main/java/com/oracle/springapp/dao/impl
-mkdir -p src/main/java/com/oracle/springapp/model
-mkdir -p src/main/java/com/oracle/springapp/service/impl
-mkdir -p src/main/resources
-touch pom.xml
-touch src/main/resources/application.properties
-touch src/main/java/com/oracle/springapp/OracleJdbcApplication.java
-touch src/main/java/com/oracle/springapp/AllTablesDAO.java
-touch src/main/java/com/oracle/springapp/EmployeeDAO.java
-touch src/main/java/com/oracle/springapp/dao/impl/AllTablesDAOImpl.java
-touch src/main/java/com/oracle/springapp/dao/impl/EmployeeDAOImpl.java
-touch src/main/java/com/oracle/springapp/model/AllTables.java
-touch src/main/java/com/oracle/springapp/model/Employee.java
-touch src/main/java/com/oracle/springapp/service/EmployeeService.java
+mkdir springboot-ucp &&\
+cd springboot-ucp &&\
+mkdir -p src/main/java/com/oracle/springapp/dao/impl &&\
+mkdir -p src/main/java/com/oracle/springapp/model &&\
+mkdir -p src/main/java/com/oracle/springapp/service/impl &&\
+mkdir -p src/main/resources &&\
+touch pom.xml &&\
+touch src/main/resources/application.properties &&\
+touch src/main/java/com/oracle/springapp/OracleJdbcApplication.java &&\
+touch src/main/java/com/oracle/springapp/AllTablesDAO.java &&\
+touch src/main/java/com/oracle/springapp/EmployeeDAO.java &&\
+touch src/main/java/com/oracle/springapp/dao/impl/AllTablesDAOImpl.java &&\
+touch src/main/java/com/oracle/springapp/dao/impl/EmployeeDAOImpl.java &&\
+touch src/main/java/com/oracle/springapp/model/AllTables.java &&\
+touch src/main/java/com/oracle/springapp/model/Employee.java &&\
+touch src/main/java/com/oracle/springapp/service/EmployeeService.java &&\
 touch src/main/java/com/oracle/springapp/service/impl/EmployeeServiceImpl.java
 ```
 

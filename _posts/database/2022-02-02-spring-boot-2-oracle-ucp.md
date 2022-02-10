@@ -13,9 +13,12 @@ tags:
 summary: Springboot 2 oracle Universal Connection Pool configuration(UCP) 
 ---
 
+
+
 ## Directory Structure
 
 ```
+SpringBootSample
 ├── Readme.md
 ├── pom.xml
 └── src
@@ -42,7 +45,25 @@ summary: Springboot 2 oracle Universal Connection Pool configuration(UCP)
             └── application.properties
 ```
 
-## pom.xml
+```bash
+mkdir springboot-ucp 
+cd springboot-ucp 
+mkdir -p src/main/java/com/oracle/springapp/dao/impl
+mkdir -p src/main/java/com/oracle/springapp/model
+mkdir -p src/main/java/com/oracle/springapp/service/impl
+mkdir -p src/main/resources
+touch pom.xml
+touch src/main/resources/application.properties
+touch src/main/java/com/oracle/springapp/OracleJdbcApplication.java
+touch src/main/java/com/oracle/springapp/AllTablesDAO.java
+touch src/main/java/com/oracle/springapp/EmployeeDAO.java
+touch src/main/java/com/oracle/springapp/dao/impl/AllTablesDAOImpl.java
+touch src/main/java/com/oracle/springapp/dao/impl/EmployeeDAOImpl.java
+touch src/main/java/com/oracle/springapp/model/AllTables.java
+touch src/main/java/com/oracle/springapp/model/Employee.java
+touch src/main/java/com/oracle/springapp/service/EmployeeService.java
+touch src/main/java/com/oracle/springapp/service/impl/EmployeeServiceImpl.java
+```
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,7 +79,7 @@ summary: Springboot 2 oracle Universal Connection Pool configuration(UCP)
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
+		<version>2.6.3</version>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -110,46 +131,70 @@ summary: Springboot 2 oracle Universal Connection Pool configuration(UCP)
 </project>
 ```
 
-```bash
-mkdir src\main\java\com\oracle\springapp\dao 
-```
-
 ```java
-package com.oracle.springapp.dao;
+package com.oracle.springapp;
 
-import java.util.List;
 
-import com.oracle.springapp.model.AllTables;
+import java.sql.Date;
 
-/**
- * Simple DAO interface for EMP table.
- *
- */
-public interface AllTablesDAO {
-	public List<AllTables> getTableNames();
-}
-```
-
-```java
-package com.oracle.springapp.dao;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.oracle.springapp.model.Employee;
+import com.oracle.springapp.service.EmployeeService;
 
 /**
- * Simple DAO interface for EMP table.
+ * SpringBoot application main class. It uses JdbcTemplate class which
+ * internally uses UCP for connection check-outs and check-ins.
  *
  */
-public interface EmployeeDAO {
-	public List<Employee> getAllEmployees();
+@SpringBootApplication
+public class OracleJdbcApplication implements CommandLineRunner {
 
-	void insertEmployee(Employee employee);
+    @Autowired
+    EmployeeService employeeService;
+    
+	public static void main(String[] args) {
+		SpringApplication.run(OracleJdbcApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		
+		// Displays 20 table names from ALL_TABLES
+		employeeService.displayTableNames();
+		System.out.println("List of employees");
+		// Displays the list of employees from EMP table
+		employeeService.displayEmployees();
+		// Insert a new employee into EMP table
+		employeeService.insertEmployee(new Employee(7954,"TAYLOR","MANAGER",7839, Date.valueOf("2020-03-20"),5300,0,10));
+		System.out.println("List of Employees after the update");
+		// Displays the list of employees after a new employee record is inserted
+		employeeService.displayEmployees();		
+	}
+
 }
 ```
 
-```bash
-mkdir src\main\java\com\oracle\springapp\dao\impl
+```
+# For connecting to Autonomous Database (ATP) refer https://www.oracle.com/database/technologies/getting-started-using-jdbc.html
+# Provide the database URL, database username and database password 
+spring.datasource.url=jdbc:oracle:thin:@db202109302311_high?TNS_ADMIN=/home/opc/wallet/Wallet_DB202109302311
+spring.datasource.username=springbootdemo
+spring.datasource.password=********
+
+# Properties for using Universal Connection Pool (UCP)
+# Note: These properties require JDBC version 21.0.0.0
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.type=oracle.ucp.jdbc.UCPDataSource
+spring.datasource.ucp.connection-factory-class-name=oracle.jdbc.replay.OracleDataSourceImpl
+spring.datasource.ucp.sql-for-validate-connection=select * from dual
+spring.datasource.ucp.connection-pool-name=connectionPoolName1
+spring.datasource.ucp.initial-pool-size=15
+spring.datasource.ucp.min-pool-size=10
+spring.datasource.ucp.max-pool-size=30
 ```
 
 ```java
@@ -269,8 +314,38 @@ public class EmployeeDAOImpl extends JdbcDaoSupport implements EmployeeDAO {
 }
 ```
 
-```bash
-mkdir src\main\java\com\oracle\springapp\model
+```java
+package com.oracle.springapp.dao;
+
+import java.util.List;
+
+import com.oracle.springapp.model.AllTables;
+
+/**
+ * Simple DAO interface for EMP table.
+ *
+ */
+public interface AllTablesDAO {
+	public List<AllTables> getTableNames();
+}
+```
+
+```java
+package com.oracle.springapp.dao;
+
+import java.util.List;
+
+import com.oracle.springapp.model.Employee;
+
+/**
+ * Simple DAO interface for EMP table.
+ *
+ */
+public interface EmployeeDAO {
+	public List<Employee> getAllEmployees();
+
+	void insertEmployee(Employee employee);
+}
 ```
 
 ```java
@@ -434,41 +509,6 @@ public class Employee {
 }
 ```
 
-```bash
-mkdir src\main\java\com\oracle\springapp\service
-```
-
-```java
-package com.oracle.springapp.service;
-
-import com.oracle.springapp.model.Employee;
-
-public interface EmployeeService {
-	/**
-	 * Display all employees.
-	 */
-	public void displayEmployees();
-	
-	/**
-	 * Get table name of the top 20 tables
-	 */
-	
-	public void displayTableNames();
-	
-	/**
-	 * Create a new employee record
-	 */
-	
-	public void insertEmployee(Employee employee);
-
-	
-}
-```
-
-```bash
-mkdir src\main\java\com\oracle\springapp\service
-```
-
 ```java
 package com.oracle.springapp.service.impl;
 
@@ -532,27 +572,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	
 }
-```
-
-```bash
-mkdir src\main\resources
-```
-application.properties
-```properties
-# For connecting to Autonomous Database (ATP) refer https://www.oracle.com/database/technologies/getting-started-using-jdbc.html
-# Provide the database URL, database username and database password 
-spring.datasource.url=jdbc:oracle:thin:@dbname_alias?TNS_ADMIN=/Users/test/wallet/wallet_dbname_alias
-spring.datasource.username=<your-db-user>
-spring.datasource.password=<your-db-password>
-
-# Properties for using Universal Connection Pool (UCP)
-# Note: These properties require JDBC version 21.0.0.0
-spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
-spring.datasource.type=oracle.ucp.jdbc.UCPDataSource
-spring.datasource.ucp.connection-factory-class-name=oracle.jdbc.replay.OracleDataSourceImpl
-spring.datasource.ucp.sql-for-validate-connection=select * from dual
-spring.datasource.ucp.connection-pool-name=connectionPoolName1
-spring.datasource.ucp.initial-pool-size=15
-spring.datasource.ucp.min-pool-size=10
-spring.datasource.ucp.max-pool-size=30
 ```

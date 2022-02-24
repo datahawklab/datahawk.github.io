@@ -65,6 +65,13 @@ touch src/main/java/com/oracle/springapp/service/EmployeeService.java &&\
 touch src/main/java/com/oracle/springapp/service/impl/EmployeeServiceImpl.java
 ```
 
+### requirements
+
+* spring boot 2.4.5
+* oracle 21.1.0.0 jdbc driver 
+
+### pom.xml
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -79,7 +86,7 @@ touch src/main/java/com/oracle/springapp/service/impl/EmployeeServiceImpl.java
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.3</version>
+		<version>2.4.5</version>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -131,6 +138,8 @@ touch src/main/java/com/oracle/springapp/service/impl/EmployeeServiceImpl.java
 </project>
 ```
 
+### OracleJdbcApplication
+
 ```java
 package com.oracle.springapp;
 
@@ -178,24 +187,31 @@ public class OracleJdbcApplication implements CommandLineRunner {
 }
 ```
 
+### src/main/resources/application.properties 
+
 ```
 # For connecting to Autonomous Database (ATP) refer https://www.oracle.com/database/technologies/getting-started-using-jdbc.html
 # Provide the database URL, database username and database password 
-spring.datasource.url=jdbc:oracle:thin:@db202109302311_high?TNS_ADMIN=/home/opc/wallet/Wallet_DB202109302311
-spring.datasource.username=springbootdemo
-spring.datasource.password=********
+spring.datasource.url=jdbc:oracle:thin:@db202109302311_high?TNS_ADMIN=/home/swapanc/wallets/Wallet_DB202109302311
+spring.datasource.username=$USER_ID
+spring.datasource.password=$PASS
 
 # Properties for using Universal Connection Pool (UCP)
 # Note: These properties require JDBC version 21.0.0.0
 spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
-spring.datasource.type=oracle.ucp.jdbc.UCPDataSource
-spring.datasource.ucp.connection-factory-class-name=oracle.jdbc.replay.OracleDataSourceImpl
-spring.datasource.ucp.sql-for-validate-connection=select * from dual
-spring.datasource.ucp.connection-pool-name=connectionPoolName1
-spring.datasource.ucp.initial-pool-size=15
-spring.datasource.ucp.min-pool-size=10
-spring.datasource.ucp.max-pool-size=30
+spring.datasource.type=oracle.ucp.jdbc.PoolDataSource
+# For using Replay datasource
+#spring.datasource.oracleucp.connection-factory-class-name=oracle.jdbc.replay.OracleDataSourceImpl
+# For using Non-Replay datasource
+spring.datasource.oracleucp.connection-factory-class-name=oracle.jdbc.pool.OracleDataSource
+spring.datasource.oracleucp.sql-for-validate-connection=select * from dual
+spring.datasource.oracleucp.connection-pool-name=connectionPoolName1
+spring.datasource.oracleucp.initial-pool-size=15
+spring.datasource.oracleucp.min-pool-size=10
+spring.datasource.oracleucp.max-pool-size=30
 ```
+
+### AllTablesDAOImpl
 
 ```java
 package com.oracle.springapp.dao.impl;
@@ -240,6 +256,8 @@ public class AllTablesDAOImpl extends JdbcDaoSupport implements AllTablesDAO {
 	}
 }
 ```
+
+### EmployeeDAOImpl
 
 ```java
 package com.oracle.springapp.dao.impl;
@@ -314,6 +332,8 @@ public class EmployeeDAOImpl extends JdbcDaoSupport implements EmployeeDAO {
 }
 ```
 
+### AllTablesDAO
+
 ```java
 package com.oracle.springapp.dao;
 
@@ -329,6 +349,8 @@ public interface AllTablesDAO {
 	public List<AllTables> getTableNames();
 }
 ```
+
+### EmployeeDAO
 
 ```java
 package com.oracle.springapp.dao;
@@ -396,6 +418,8 @@ public class AllTables {
 
 }
 ```
+
+### Employee
 
 ```java
 package com.oracle.springapp.model;
@@ -509,6 +533,8 @@ public class Employee {
 }
 ```
 
+### EmployeeServiceImpl
+
 ```java
 package com.oracle.springapp.service.impl;
 
@@ -573,6 +599,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 }
 ```
+
+### EmployeeService
 
 ```java
 package com.oracle.springapp.service;

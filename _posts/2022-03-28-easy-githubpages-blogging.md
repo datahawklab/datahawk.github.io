@@ -26,6 +26,7 @@ I've always wanted to create a technology blog but never did because i'm very la
 * for example:
   * Github account: jetsfan1
   * repo name should be jetsfan1.github.io
+
 ## update the following files directly in Github in the repo created from the template
 
 commit changes to both files below directly in Github
@@ -72,7 +73,7 @@ url: "https://jetsfan1.github.io/"
 * in _posts, edit and alter any of the posts and commit your change
 * your changes should be refreshed and viewable in your blog a few minutes after your commit is done.
 
-## Upcoming additions to this pos
+## Upcoming additions to this post
 
 * How to link a custom domain of your choosing to your github pages blog/site.
 * in the upcoming updates to this post, i'll be adding info on how to add images very easily and have them easily github.

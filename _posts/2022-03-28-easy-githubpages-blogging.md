@@ -12,7 +12,7 @@ tags:
 summary: Githubpages easy, free blogging site 1 
 ---
 
-I've always wanted to create a technology blog but never did because i'm very lazy and setting up and maintaining such an endevor seemed so difficult. Then i looked into Github pages and realized how simple and no-cost it can be to run my own technology site. I I will try to keep the information as streamlined as possible.
+I've always wanted to create a technology blog but never did because i'm very lazy and setting up and maintaining such an endevor seemed so difficult. Then i looked into Github pages and realized how simple and no-cost it can be to run my own technology site. I I will try to keep the information as streamlined as possible. The steps below should have your blog up and running in less than 10 minutes and has $0 in associated costs forever.
 
 ## Create a free Github account
 
@@ -22,10 +22,14 @@ I've always wanted to create a technology blog but never did because i'm very la
 
 [Blogging/site template repo](https://github.com/swapan-datahawklab/swapan-datahawklab.github.io/generate)
 
-* your repo name should be githubname + github.io. 
+your repo name should be githubname + github.io. 
+
 * for example:
-  * Github account: jetsfan1
-  * repo name should be jetsfan1.github.io
+* The first part 'jetsfan1' is the github account name.
+* jetsfan1.github.io is the name of the repo that was choosen.
+* this triggers Github to atomaticlaly generate a blog based on the contents of this repo.
+
+![github pages example 1](https://user-images.githubusercontent.com/88954265/160387246-e0e411e5-1928-4b21-84fe-938eb16605ba.png)
 
 ## update the following files directly in Github in the repo created from the template
 

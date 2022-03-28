@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Githubpages easy, free blogging site 1
-date: 2022-02-02 03:21
+date: 2022-03-28 03:21
 category: github pages
 author: swapan chakrabarty
 header-img: "img/post-bg-2015.jpg"
@@ -20,7 +20,7 @@ I've always wanted to create a technology blog but never did because i'm very la
 
 ## Use this template to start your Github pages free site/blog
 
-[https://github.com/swapan-datahawklab/swapan-datahawklab.github.io/generate] (<https://github.com/swapan-datahawklab/swapan-datahawklab.github.io/generate>)
+[Blogging/site template repo](https://github.com/swapan-datahawklab/swapan-datahawklab.github.io/generate)
 
 ## update the following files directly in Github in the repo created from the template
 

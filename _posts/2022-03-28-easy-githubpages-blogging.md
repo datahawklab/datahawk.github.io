@@ -22,6 +22,10 @@ I've always wanted to create a technology blog but never did because i'm very la
 
 [Blogging/site template repo](https://github.com/swapan-datahawklab/swapan-datahawklab.github.io/generate)
 
+* your repo name should be githubname + github.io. 
+* for example:
+  * Github account: jetsfan1
+  * repo name should be jetsfan1.github.io
 ## update the following files directly in Github in the repo created from the template
 
 commit changes to both files below directly in Github
@@ -35,9 +39,20 @@ email:
 description: "Datahawk blog"
 keyword: "openshift data"
 url: "https://swapan-datahawklab.github.io/"
-....
-....
-github_username:    swapan-datahawklab
+...
+...
+github_username:    jetsfan1.github.io
+```
+
+for example, for jetsfan1.github.io the following entries would be updated:
+
+```bash
+SEOTitle: a blog about football
+header-img: img/home-bg.jpg
+email:
+description: "football blog"
+keyword: "useless football info"
+url: "https://jetsfan1.github.io/"
 ```
 
 * open about.html and update the text in the following section to put in info about yourself
@@ -45,19 +60,10 @@ github_username:    swapan-datahawklab
 ```bash
 <div class="en post-container">
 ```
-
-## In Settings update the following
-
-* change the repository name to your github account name + github.io.  
-    for example, for my github name is swapan-datahawklab, this repo name was changed to swapan-datahawklab.github.io.
-    and the companion site is publised/updated automatically when commits are maded to the _posts directory.
-
-* Under Features, select 'issues'
-
 ## Open your published blog at https://yourgithubname.github.io
 
-* in settings scroll down to 'GitHub Pages' and click 'Check it out here!'
-* click the link next to 'your site is published at' 
+* since you commmited changes to your repo and you set the repo name to yourgithaccount.github.io
+  * your blog/site was automatically published to https://yourgithaccount.github.io.
 * this is the one generated for this template repo. your's will look the same but have a different URL as listed above.
   [https://swapan-datahawklab.github.io/](https://swapan-datahawklab.github.io/)
 
@@ -68,5 +74,6 @@ github_username:    swapan-datahawklab
 
 ## Upcoming additions to this pos
 
+* How to link a custom domain of your choosing to your github pages blog/site.
 * in the upcoming updates to this post, i'll be adding info on how to add images very easily and have them easily github.
 * I'll also post instructions on how to link a free discus account to your blog so that your readers can post messages.

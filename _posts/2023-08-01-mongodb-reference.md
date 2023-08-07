@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mongodb course notes
-date: 2023-08-01 00:01
+date: 2023-08-07 00:01
 category: Mongodb course notes
 author: swapan chakrabarty
 tags: [Mongodb]
